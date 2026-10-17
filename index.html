@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0E6A5A"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="صحتي"><meta name="description" content="صحتي: افحص مكونات الخبز والدقيق للكشف عن برومات البوتاسيوم E924"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><style>:root{color-scheme:light;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>صحتي</title>
+<script>document.documentElement.setAttribute("dir", "rtl"); document.documentElement.setAttribute("lang", "ar");</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@600;700&display=swap">
+<style>
+/* Layout: phone app shell. Sticky top bar, one scrolling column, fixed bottom tab bar. */
+:root {
+  --bg: #F1F5F3;
+  --surface: #FFFFFF;
+  --fg: #12201B;
+  --muted: #55655F;
+  --line: #D5DFDA;
+  --accent: #0E6A5A;
+  --accent-fg: #FFFFFF;
+  --danger: #B3261E;
+  --danger-bg: #FCE9E7;
+  --warn: #8F5200;
+  --warn-bg: #FBF0DC;
+  --ok: #17703F;
+  --ok-bg: #E4F4EA;
+  --font-display: "Reem Kufi", "Noto Kufi Arabic", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", "Noto Sans Arabic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1714; --surface: #16231F; --fg: #E6F0EC; --muted: #98ABA4; --line: #2A3A35;
+    --accent: #4FC3AB; --accent-fg: #07211B;
+    --danger: #FF8A80; --danger-bg: #3A1B19;
+    --warn: #F2B866; --warn-bg: #36280F;
+    --ok: #6FD39A; --ok-bg: #16301F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1714; --surface: #16231F; --fg: #E6F0EC; --muted: #98ABA4; --line: #2A3A35;
+  --accent: #4FC3AB; --accent-fg: #07211B;
+  --danger: #FF8A80; --danger-bg: #3A1B19;
+  --warn: #F2B866; --warn-bg: #36280F;
+  --ok: #6FD39A; --ok-bg: #16301F;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.7; padding-inline: 16px; padding-block: 0 84px; }
+.wrap { max-width: 640px; margin-inline: auto; min-width: 0; }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); padding-block: 14px 10px; display: flex; align-items: center; gap: 10px; z-index: 5; border-bottom: 1px solid var(--line); margin-inline: -16px; padding-inline: 16px; }
+.logo { width: 46px; height: 46px; flex: none; }
+.logo svg { width: 100%; height: 100%; display: block; }
+.about-hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+.about-hero .big { width: 150px; height: 150px; max-width: 100%; display: block; filter: drop-shadow(0 12px 12px rgba(0,0,0,.22)); }
+.about-hero h2 { font-size: 30px; margin: 4px 0 0; }
+.about-hero p { margin: 0; color: var(--muted); }
+.about-label { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--accent); margin-bottom: 4px; }
+.maker { display: flex; flex-direction: column; gap: 2px; }
+.maker b { direction: ltr; unicode-bidi: plaintext; text-align: right; }
+.foot { max-width: 640px; margin: 8px auto 0; text-align: center; color: var(--muted); font-size: 13px; padding-block: 14px; border-top: 1px solid var(--line); line-height: 1.8; }
+.foot bdi { font-weight: 600; color: var(--fg); }
+@media (prefers-reduced-motion: no-preference) { .about-hero .big { animation: floaty 5s ease-in-out infinite; } @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } } }
+h1 { font-family: var(--font-display); font-size: 26px; line-height: 1.1; margin: 0; }
+.tag { color: var(--muted); font-size: 13px; margin: 0; }
+h2 { font-family: var(--font-display); font-size: 21px; margin: 0 0 6px; text-wrap: balance; }
+h3 { font-size: 16px; margin: 0 0 4px; }
+p { margin: 0 0 10px; }
+section.tab { padding-block: 18px; display: flex; flex-direction: column; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; min-width: 0; }
+label { font-weight: 600; display: block; margin-bottom: 6px; }
+textarea { width: 100%; min-height: 130px; resize: vertical; font: inherit; color: var(--fg); background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; }
+textarea:focus-visible, button:focus-visible, .nav button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.btn { font: inherit; font-weight: 600; border-radius: 10px; padding: 11px 18px; border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-fg); cursor: pointer; min-height: 46px; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.result { border-radius: 14px; padding: 16px; border: 1.5px solid; }
+.result.danger { background: var(--danger-bg); border-color: var(--danger); }
+.result.warn { background: var(--warn-bg); border-color: var(--warn); }
+.result.ok { background: var(--ok-bg); border-color: var(--ok); }
+.pill { display: inline-block; font-weight: 700; font-size: 13px; padding: 2px 12px; border-radius: 99px; margin-bottom: 8px; color: #fff; }
+.danger .pill { background: var(--danger); }
+.warn .pill { background: var(--warn); }
+.ok .pill { background: var(--ok); }
+:root[data-theme="dark"] .pill, :root:not([data-theme="light"]) .pill { color: #10110f; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .pill { color: #fff; } }
+:root[data-theme="light"] .pill { color: #fff; }
+.found { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+.found li { background: var(--surface); border: 1px solid currentColor; border-radius: 8px; padding: 1px 10px; font-size: 14px; direction: ltr; unicode-bidi: plaintext; }
+.small { font-size: 13px; color: var(--muted); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: start; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 13px; }
+.scroll { overflow-x: auto; }
+ul.plain { margin: 0; padding-inline-start: 20px; }
+ul.plain li { margin-bottom: 6px; }
+.hist-item { display: flex; gap: 10px; align-items: flex-start; padding-block: 10px; border-bottom: 1px solid var(--line); }
+.hist-item:last-child { border-bottom: 0; }
+.dot { width: 12px; height: 12px; border-radius: 50%; flex: none; margin-top: 8px; }
+.dot.danger { background: var(--danger); } .dot.warn { background: var(--warn); } .dot.ok { background: var(--ok); }
+.hist-text { min-width: 0; flex: 1; overflow-wrap: anywhere; }
+fieldset { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px 14px; margin: 0 0 12px; min-width: 0; }
+legend { font-weight: 600; padding-inline: 6px; color: var(--accent); }
+.field { margin-bottom: 10px; min-width: 0; }
+.field label { font-weight: 500; font-size: 14px; margin-bottom: 3px; }
+input[type="text"], input[type="tel"], input[type="date"] { width: 100%; font: inherit; color: var(--fg); background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 44px; }
+input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.check { display: flex; gap: 8px; align-items: center; font-weight: 400; margin: 0; }
+.check input { width: 20px; height: 20px; accent-color: var(--accent); }
+.letter { white-space: pre-wrap; font-size: 14px; line-height: 1.9; background: var(--bg); border: 1px dashed var(--line); border-radius: 10px; padding: 12px; overflow-wrap: anywhere; }
+.msg { font-size: 14px; color: var(--danger); margin: 8px 0 0; }
+a.btn { display: inline-flex; align-items: center; text-decoration: none; }
+video#cam { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; background: #000; display: block; margin-top: 12px; }
+.prod-name { font-weight: 600; font-size: 17px; margin: 0 0 2px; overflow-wrap: anywhere; }
+.ing-text { font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; margin: 6px 0; direction: ltr; unicode-bidi: plaintext; text-align: start; }
+ol.plain { margin: 0; padding-inline-start: 22px; }
+ol.plain li { margin-bottom: 8px; }
+nav.nav { position: fixed; inset-inline: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--line); display: flex; padding-block: 6px calc(6px + env(safe-area-inset-bottom, 0px)); padding-inline: 8px; z-index: 6; }
+.nav button { flex: 1; font: inherit; font-size: 12px; min-width: 0; background: none; border: 0; color: var(--muted); padding: 6px 4px; border-radius: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 52px; }
+.nav button svg { width: 22px; height: 22px; }
+.nav button[aria-selected="true"] { color: var(--accent); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) { .result { animation: rise .25s ease-out; } @keyframes rise { from { transform: translateY(6px); opacity: .4; } to { transform: none; opacity: 1; } } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="lg-face" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#7FEBD3"/>
+      <stop offset="0.45" stop-color="#1E9C86"/>
+      <stop offset="1" stop-color="#0A5446"/>
+    </linearGradient>
+    <linearGradient id="lg-heart" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#BDEFE3"/>
+    </linearGradient>
+    <linearGradient id="lg-sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <symbol id="logo3d" viewBox="0 0 120 120">
+    <ellipse cx="58" cy="112" rx="34" ry="4.5" fill="#000" opacity="0.22"/>
+    <g transform="translate(5 2) scale(0.86)">
+      <path d="M60 8 L102 22 V58 C102 84 82 100 60 110 C38 100 18 84 18 58 V22 Z" transform="translate(9 12)" fill="#063A31"/>
+      <path d="M60 8 L102 22 V58 C102 84 82 100 60 110 C38 100 18 84 18 58 V22 Z" transform="translate(6 8)" fill="#08463B"/>
+      <path d="M60 8 L102 22 V58 C102 84 82 100 60 110 C38 100 18 84 18 58 V22 Z" transform="translate(3 4)" fill="#0A5446"/>
+      <path d="M60 8 L102 22 V58 C102 84 82 100 60 110 C38 100 18 84 18 58 V22 Z" fill="url(#lg-face)" stroke="#B5F5E6" stroke-opacity="0.7" stroke-width="1.5"/>
+      <path d="M18 22 L60 8 L102 22 V36 C78 30 40 40 18 62 Z" fill="url(#lg-sheen)"/>
+      <path d="M60 80 C60 80 37 65 37 49 C37 41 43 35 51 35 C55 35 58.5 37.5 60 41 C61.5 37.5 65 35 69 35 C77 35 83 41 83 49 C83 65 60 80 60 80 Z" fill="#06382F" opacity="0.35" transform="translate(1.5 3)"/>
+      <path d="M60 80 C60 80 37 65 37 49 C37 41 43 35 51 35 C55 35 58.5 37.5 60 41 C61.5 37.5 65 35 69 35 C77 35 83 41 83 49 C83 65 60 80 60 80 Z" fill="url(#lg-heart)"/>
+      <path d="M44 55 H53 L57.5 46 L63 63 L67 55 H76" fill="none" stroke="#0E6A5A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </symbol>
+</svg>
+<div class="wrap">
+  <header class="top">
+    <div class="logo" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#logo3d"/></svg></div>
+    <div><h1>صحتي</h1><p class="tag">افحص مكونات الخبز والمخبوزات</p></div>
+  </header>
+
+  <section class="tab" id="tab-check" role="tabpanel">
+    <div class="card">
+      <h2>كشف برومات البوتاسيوم</h2>
+      <p class="small">برومات البوتاسيوم (E924) محسّن عجين يُضاف أحياناً للدقيق والخبز، وهو المقصود عادةً بعبارة «بروميد البوتاسيوم» المتداولة بين الناس.</p>
+      <label for="ing">انسخ قائمة المكونات المكتوبة على العبوة أو الدقيق</label>
+      <textarea id="ing" placeholder="مثال: دقيق قمح، ماء، خميرة، ملح، برومات البوتاسيوم (E924)"></textarea>
+      <div class="row">
+        <button class="btn" id="go" type="button">افحص الآن</button>
+        <button class="btn ghost" id="sample" type="button">جرّب مثالاً</button>
+        <button class="btn ghost" id="clear" type="button">مسح</button>
+      </div>
+    </div>
+    <div id="out" aria-live="polite"></div>
+    <div class="card">
+      <h2>ابحث بالباركود</h2>
+      <p class="small">للمنتجات المعبأة: امسح الباركود أو اكتب رقمه، ويجلب التطبيق المكونات المسجّلة للمنتج ويفحصها.</p>
+      <label for="code">رقم الباركود</label>
+      <input type="text" id="code" inputmode="numeric" dir="ltr" placeholder="مثال: 6221234567890" autocomplete="off">
+      <div class="row">
+        <button class="btn" id="look" type="button">ابحث</button>
+        <button class="btn ghost" id="scan" type="button">مسح بالكاميرا</button>
+      </div>
+      <video id="cam" playsinline muted hidden></video>
+    </div>
+    <div id="bout" aria-live="polite"></div>
+    <div class="card">
+      <h2>سجل الدقيق والمخابز</h2>
+      <p class="small">نتائج تحاليل مخبرية موثّقة لماركات دقيق ومطاحن ومخابز. اكتب الاسم أو المدينة، أو اترك الخانة فارغة لعرض الكل.</p>
+      <label for="rq">اسم الدقيق أو المطحنة أو المخبز</label>
+      <input type="text" id="rq" autocomplete="off">
+      <div class="row"><button class="btn" id="rgo" type="button">ابحث في السجل</button></div>
+    </div>
+    <div id="rout" aria-live="polite"></div>
+    <p class="small">الفحص يقرأ النص الذي تدخله فقط. وجود المادة في الخبز نفسه لا يُثبت إلا بتحليل مخبري.</p>
+  </section>
+
+  <section class="tab" id="tab-info" role="tabpanel" hidden>
+    <div class="card">
+      <h2>كيف تستفيد من التطبيق</h2>
+      <ul class="plain">
+        <li><b>إن وُجدت قائمة مكونات:</b> الصقها أو امسح الباركود، فيكشف التطبيق المادة بأسمائها ورموزها المختلفة.</li>
+        <li><b>إن لم توجد (كالرغيف بلا ديباجة):</b> اسأل عن ماركة الدقيق وابحث عنها في سجل الدقيق، وخذ عينة للتحليل حسب الدليل أدناه.</li>
+        <li><b>إن اشتبهت:</b> قدّم شكوى من تبويب «شكوى» لتصل إلى الجهة المختصة وتؤخذ عينة رسمية.</li>
+      </ul>
+      <p class="small" style="margin-top:8px">التأكد النهائي من وجود المادة يكون بالتحليل المخبري وحده.</p>
+    </div>
+    <div class="card">
+      <h2>اسأل المخبز</h2>
+      <p class="small">حين لا توجد قائمة مكونات، اطرح هذه الأسئلة على صاحب المخبز:</p>
+      <ul class="plain">
+        <li>ما نوع الدقيق ومن المورّد؟ وهل أستطيع رؤية الكيس وقائمة مكوناته؟</li>
+        <li>هل تضيفون محسّن عجين؟ وما اسمه ومكوناته؟</li>
+        <li>هل لديكم شهادة تحليل أو مطابقة من المورّد؟</li>
+        <li>هل الدقيق مكتوب عليه «خالٍ من البرومات»؟</li>
+      </ul>
+      <p class="small" style="margin-top:8px">إن لم تحصل على إجابة واضحة، استخدم تبويب «شكوى».</p>
+    </div>
+    <div class="card">
+      <h2>كيف أُثبت وجود برومات في الدقيق؟</h2>
+      <p class="small">برومات البوتاسيوم تتحلل جزئياً أثناء الخَبز، لذلك يكون فحص الدقيق أو العجين أدق غالباً من فحص الرغيف الجاهز.</p>
+      <ol class="plain">
+        <li>صوّر كيس الدقيق من الجهتين مع قائمة المكونات والباركود وتاريخ الإنتاج.</li>
+        <li>خذ عينة من الكيس نفسه في وعاء نظيف جاف مغلق، واكتب عليه التاريخ واسم المكان.</li>
+        <li>اسأل المختبر عن الكمية المطلوبة، وعن طريقة الكشف عن البرومات.</li>
+        <li>اترك العينة مغلقة ولا تفتحها، ويُفضّل أن يحضر شاهد عند أخذها، فهذا يقوّي الشكوى.</li>
+        <li>أطقم الفحص السريع تعطي مؤشراً فقط، فلا تبنِ عليها اتهاماً قبل تحليل مخبري.</li>
+        <li>قدّم الشكوى من تبويب «شكوى» وأرفق الصور ونتيجة التحليل.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>ما هي هذه المادة؟</h2>
+      <p>برومات البوتاسيوم (KBrO₃) ملح يُستخدم لتقوية العجين وزيادة حجم الرغيف. يرمز لها في قوائم المكونات بالرمز E924، ويرمز E924b لبرومات الكالسيوم.</p>
+      <p>صنّفتها الوكالة الدولية لأبحاث السرطان ضمن المجموعة 2B، أي «ربما مسرطنة للإنسان»، اعتماداً على دراسات على الحيوانات. وهي محظورة في الاتحاد الأوروبي وبريطانيا وكندا والبرازيل والصين والهند.</p>
+    </div>
+    <div class="card">
+      <h2>بروميد أم برومات؟</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>المادة</th><th>الصيغة</th><th>الاستخدام</th></tr></thead>
+        <tbody>
+          <tr><td>برومات البوتاسيوم</td><td dir="ltr">KBrO₃</td><td>محسّن عجين، وهي المادة المقصودة هنا</td></tr>
+          <tr><td>بروميد البوتاسيوم</td><td dir="ltr">KBr</td><td>مادة مختلفة، لا تُستخدم محسّناً للخبز</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <h2>عند شراء الخبز والدقيق</h2>
+      <ul class="plain">
+        <li>اقرأ قائمة المكونات وابحث عن: برومات، E924، دقيق مبرمَّد (bromated).</li>
+        <li>فضّل الدقيق والخبز الذي يذكر بوضوح «خالٍ من البرومات».</li>
+        <li>إن لم تكن هناك قائمة مكونات، اسأل المخبز عن نوع الدقيق ومحسّنات العجين.</li>
+        <li>للتأكد من عيّنة، يلزم تحليل في مختبر أغذية معتمد.</li>
+        <li>للإبلاغ عن مخبز مشتبه به، تواصل مع جهة الرقابة على الأغذية في بلدك.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>محسّنات عجين أخرى تستحق الانتباه</h2>
+      <ul class="plain">
+        <li><b>أزوديكربوناميد (E927a):</b> يخضع لقيود أو حظر في عدة دول.</li>
+        <li><b>يودات البوتاسيوم (E917):</b> محسّن بديل، وتختلف القوانين بين الدول.</li>
+      </ul>
+      <p class="small" style="margin-top:8px">يعرض الفحص هذه المواد كتنبيه إضافي فقط.</p>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-about" role="tabpanel" hidden>
+    <div class="card about-hero">
+      <svg class="big" viewBox="0 0 120 120" role="img" aria-label="شعار صحتي"><use href="#logo3d"/></svg>
+      <h2>صحتي</h2>
+      <p>اعرف ما في طعامك قبل أن تأكله</p>
+    </div>
+    <div class="card">
+      <span class="about-label">الرؤية</span>
+      <p>أن يعرف كل بيت ما يدخل في غذائه اليومي، فتصبح قراءة المكونات عادة بسيطة تحمي صحة الأسرة.</p>
+    </div>
+    <div class="card">
+      <span class="about-label">الرسالة</span>
+      <p>تقديم أداة مجانية بسيطة تكشف المواد الضارة في الخبز والمخبوزات، وتشرح مخاطرها بلغة واضحة بلا تعقيد علمي.</p>
+    </div>
+    <div class="card">
+      <span class="about-label">الأهداف</span>
+      <ul class="plain">
+        <li>كشف برومات البوتاسيوم (E924) في قوائم مكونات الخبز والدقيق.</li>
+        <li>رفع وعي المستهلك بمحسّنات العجين المحظورة أو المقيّدة.</li>
+        <li>مساعدة المخابز والمستهلكين على اختيار بدائل أكثر أماناً.</li>
+        <li>توجيه المستهلك إلى فحص الدقيق مخبرياً وتقديم الشكوى للجهة المختصة.</li>
+        <li>التوسع لاحقاً ليشمل مواد مضافة أخرى في الأغذية.</li>
+      </ul>
+    </div>
+    <div class="card maker">
+      <span class="about-label">إعداد وتطوير</span>
+      <b>MACKENZIE CENTER</b>
+      <span class="small">مركز للحوسبة والتدريب والاستشارات</span>
+      <span class="small">جمهورية السودان</span>
+      <span class="small">المؤلف: النذير داود سليمان عبدالله</span>
+      <span class="small"><bdi>ELNAZEER DAWOD SULIMAN</bdi></span>
+      <span class="small">شهادة تسجيل مصنف رقم <bdi>20562/أ/2021م 21 ت</bdi>، صدرت في 15 سبتمبر 2021م، مجلس حق المؤلف والحقوق المجاورة</span>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-report" role="tabpanel" hidden>
+    <div class="card">
+      <h2>تقديم شكوى</h2>
+      <p class="small">املأ البيانات ليُنشأ لك نص شكوى جاهز تنسخه وترسله إلى جهة الاختصاص. لا تُحفظ هذه البيانات ولا تُرسل إلى أي جهة من التطبيق.</p>
+      <form id="form" novalidate>
+        <fieldset>
+          <legend>بيانات الشاكي</legend>
+          <div class="field"><label for="c_name">الاسم الكامل *</label><input type="text" id="c_name" autocomplete="name"></div>
+          <div class="grid2">
+            <div class="field"><label for="c_phone">رقم الهاتف</label><input type="tel" id="c_phone" autocomplete="tel" dir="ltr"></div>
+            <div class="field"><label for="c_addr">المدينة والحي</label><input type="text" id="c_addr" autocomplete="street-address"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>بيانات المشكو منه</legend>
+          <div class="field"><label for="d_name">اسم المخبز أو الجهة *</label><input type="text" id="d_name"></div>
+          <div class="field"><label for="d_addr">العنوان</label><input type="text" id="d_addr"></div>
+          <div class="grid2">
+            <div class="field"><label for="d_prod">المنتج أو ماركة الدقيق</label><input type="text" id="d_prod"></div>
+            <div class="field"><label for="d_date">تاريخ الشراء</label><input type="date" id="d_date"></div>
+          </div>
+          <div class="field"><label for="details">تفاصيل الشكوى</label><textarea id="details" style="min-height:90px" placeholder="مثال: لاحظت أن قائمة مكونات الدقيق تذكر برومات البوتاسيوم."></textarea></div>
+          <label class="check" for="inc"><input type="checkbox" id="inc"> إدراج نص المكونات من تبويب الفحص (تأكد أنه نص المنتج المشكو منه)</label>
+        </fieldset>
+        <fieldset>
+          <legend>جهة الاختصاص</legend>
+          <div class="field"><label for="a_name">اسم الجهة *</label><input type="text" id="a_name" placeholder="مثال: إدارة سلامة الأغذية"></div>
+          <div class="field"><label for="a_addr">العنوان أو البريد</label><input type="text" id="a_addr"></div>
+        </fieldset>
+        <div class="row" style="margin-top:0">
+          <button class="btn" id="mk" type="submit">إنشاء نص الشكوى</button>
+          <button class="btn ghost" id="mkClear" type="button">مسح النموذج</button>
+        </div>
+        <p class="msg" id="formMsg" role="alert" hidden></p>
+      </form>
+    </div>
+    <div class="card" id="letterCard" hidden>
+      <h2>نص الشكوى</h2>
+      <div class="letter" id="letter"></div>
+      <div class="row">
+        <button class="btn" id="copy" type="button">نسخ النص</button>
+        <a class="btn ghost" id="wa" href="#" target="_blank" rel="noopener">إرسال عبر واتساب</a>
+      </div>
+      <p class="small" id="copyMsg" aria-live="polite" style="margin-top:8px"></p>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-hist" role="tabpanel" hidden>
+    <div class="card">
+      <h2>آخر الفحوصات</h2>
+      <div id="hist"></div>
+      <div class="row"><button class="btn ghost" id="clearHist" type="button">حذف السجل</button></div>
+      <p class="small" style="margin-top:10px">السجل محفوظ على هذا الجهاز فقط.</p>
+    </div>
+  </section>
+</div>
+
+<footer class="foot">
+  © 2021 <bdi>النذير داود سليمان عبدالله</bdi><br>
+  <bdi>ELNAZEER DAWOD SULIMAN</bdi> | <bdi>MACKENZIE CENTER</bdi><br>
+  مصنف مسجّل لدى مجلس حق المؤلف والحقوق المجاورة، رقم <bdi>20562/أ/2021م 21 ت</bdi><br>
+  جميع الحقوق محفوظة
+</footer>
+
+<nav class="nav" role="tablist" aria-label="التنقل">
+  <button role="tab" aria-selected="true" data-tab="check" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>فحص</button>
+  <button role="tab" aria-selected="false" data-tab="info" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>معلومات</button>
+  <button role="tab" aria-selected="false" data-tab="report" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>شكوى</button>
+  <button role="tab" aria-selected="false" data-tab="hist" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>السجل</button>
+  <button role="tab" aria-selected="false" data-tab="about" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-6 7-6s7 2.1 7 6"/></svg>من نحن</button>
+</nav>
+
+<script>
+// BEGIN-DETECT
+function normalize(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/[ً-ٰٟـ]/g, "")
+    .replace(/[أإآٱ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه")
+    .replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 1632); });
+}
+var RULES = [
+  { id: "bromate", level: "danger", label: "برومات البوتاسيوم", test: [/bromate/, /برومات/, /بروميت/, /(^|[^a-z0-9])e[\s-]?924\s?[ab]?(?![0-9])/] },
+  { id: "bromide", level: "warn", label: "بروميد", test: [/bromide/, /بروميد/] },
+  { id: "azo", level: "warn", label: "أزوديكربوناميد (E927a)", test: [/azodicarbonamide/, /ازوديكربوناميد/, /ازوديكاربوناميد/, /(^|[^a-z0-9])e[\s-]?927\s?a(?![a-z0-9])/] },
+  { id: "iodate", level: "warn", label: "يودات البوتاسيوم (E917)", test: [/potassium iodate/, /يودات/, /(^|[^a-z0-9])e[\s-]?917(?![0-9])/] }
+];
+function detect(text) {
+  var n = normalize(text);
+  var found = [];
+  RULES.forEach(function (r) {
+    var hit = r.test.some(function (re) { return re.test(n); });
+    if (hit) found.push({ id: r.id, level: r.level, label: r.label });
+  });
+  var has = function (id) { return found.some(function (f) { return f.id === id; }); };
+  var status = "ok";
+  if (has("bromate")) status = "danger";
+  else if (found.length) status = "warn";
+  return { status: status, found: found, empty: n.trim().length === 0 };
+}
+// END-DETECT
+
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "sehhati.history.v1";
+  var lastScanned = "";
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(list) { try { localStorage.setItem(KEY, JSON.stringify(list.slice(0, 20))); } catch (e) {} }
+
+  var TITLES = {
+    danger: "تم رصد برومات البوتاسيوم",
+    warn: "يحتاج إلى انتباه",
+    ok: "لم يُرصد في النص"
+  };
+
+  function render(res) {
+    var out = $("out");
+    if (res.empty) {
+      out.innerHTML = '<div class="result warn"><span class="pill">لا يوجد نص</span><p>اكتب أو الصق قائمة المكونات أولاً.</p></div>';
+      return;
+    }
+    var h = '<div class="result ' + res.status + '"><span class="pill">' + TITLES[res.status] + '</span>';
+    var ids = res.found.map(function (f) { return f.id; });
+    if (res.status === "danger") {
+      h += "<p><b>القائمة تذكر برومات البوتاسيوم أو الرمز E924.</b> هذه المادة محظورة في عدة دول. يُفضّل عدم شراء هذا المنتج، والبحث عن بديل مكتوب عليه أنه خالٍ من البرومات.</p>";
+    } else if (res.status === "warn") {
+      if (ids.indexOf("bromide") > -1) {
+        h += "<p>ورد ذكر <b>بروميد</b> في النص. بروميد البوتاسيوم مادة مختلفة عن برومات البوتاسيوم ولا تُستخدم لتحسين الخبز. إذا كنت تقصد محسّن العجين، تأكد من الاسم المكتوب على العبوة، فهو غالباً «برومات».</p>";
+      }
+      if (ids.indexOf("azo") > -1 || ids.indexOf("iodate") > -1) {
+        h += "<p>لم يُرصد برومات البوتاسيوم، لكن النص يذكر محسّن عجين آخر تختلف القوانين بشأنه بين الدول.</p>";
+      }
+    } else {
+      h += "<p>لم نجد برومات البوتاسيوم ولا الرمز E924 في النص الذي أدخلته. تأكد أنك نسخت القائمة كاملة، فبعض العبوات تكتب المحسّنات في سطر منفصل.</p>";
+    }
+    if (res.found.length) {
+      h += '<ul class="found">' + res.found.map(function (f) { return "<li>" + f.label + "</li>"; }).join("") + "</ul>";
+    }
+    h += "</div>";
+    out.innerHTML = h;
+  }
+
+  function run() {
+    var text = $("ing").value;
+    var res = detect(text);
+    render(res);
+    if (!res.empty) lastScanned = text.trim();
+    if (!res.empty) {
+      var list = load();
+      list.unshift({ t: Date.now(), s: res.status, x: text.trim().slice(0, 140) });
+      save(list);
+      drawHist();
+    }
+  }
+
+  function drawHist() {
+    var list = load();
+    var box = $("hist");
+    if (!list.length) { box.innerHTML = '<p class="small">لا توجد فحوصات بعد. افحص أول قائمة مكونات من تبويب «فحص».</p>'; return; }
+    var names = { danger: "برومات", warn: "تنبيه", ok: "سليم" };
+    box.innerHTML = list.map(function (i) {
+      var d = new Date(i.t);
+      var when = d.toLocaleDateString("ar", { day: "numeric", month: "short" }) + "، " + d.toLocaleTimeString("ar", { hour: "2-digit", minute: "2-digit" });
+      var safe = i.x.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+      return '<div class="hist-item"><span class="dot ' + i.s + '"></span><div class="hist-text"><b>' + names[i.s] + '</b> <span class="small">' + when + "</span><br>" + safe + "</div></div>";
+    }).join("");
+  }
+
+  $("go").addEventListener("click", run);
+  $("clear").addEventListener("click", function () { $("ing").value = ""; $("out").innerHTML = ""; $("ing").focus(); });
+  $("sample").addEventListener("click", function () {
+    $("ing").value = "دقيق قمح، ماء، خميرة، سكر، ملح، زيت نباتي، محسّن عجين: برومات البوتاسيوم (E924)، حمض الأسكوربيك";
+    run();
+  });
+  $("clearHist").addEventListener("click", function () { save([]); drawHist(); });
+
+  var tabs = document.querySelectorAll(".nav button");
+  tabs.forEach(function (b) {
+    b.addEventListener("click", function () {
+      tabs.forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+      ["check", "info", "report", "hist", "about"].forEach(function (t) { $("tab-" + t).hidden = (t !== b.dataset.tab); });
+      stopScan();
+      window.scrollTo(0, 0);
+    });
+  });
+
+  var FIELDS = ["c_name", "c_phone", "c_addr", "d_name", "d_addr", "d_prod", "d_date", "details", "a_name", "a_addr"];
+  var val = function (id) { return $(id).value.trim(); };
+
+  function buildLetter() {
+    var today = new Date().toISOString().slice(0, 10);
+    var L = [];
+    L.push("إلى: " + val("a_name"));
+    if (val("a_addr")) L.push("العنوان: " + val("a_addr"));
+    L.push("التاريخ: " + today);
+    L.push("");
+    L.push("الموضوع: شكوى بشأن اشتباه في استخدام برومات البوتاسيوم (E924) في منتج غذائي");
+    L.push("");
+    L.push("تحية طيبة،");
+    L.push("");
+    var who = "أنا " + val("c_name") + (val("c_addr") ? "، من " + val("c_addr") : "");
+    L.push(who + "، أتقدم بشكوى ضد " + val("d_name") + (val("d_addr") ? "، الكائن في " + val("d_addr") : "") + ".");
+    L.push("");
+    L.push("تفاصيل الشكوى:");
+    if (val("d_prod")) L.push("- المنتج أو الدقيق: " + val("d_prod"));
+    if (val("d_date")) L.push("- تاريخ الشراء: " + val("d_date"));
+    if (val("details")) L.push("- " + val("details"));
+    var ings = lastScanned;
+    if ($("inc").checked && ings) L.push("- نص المكونات المسجّل: " + ings);
+    L.push("");
+    L.push("أرجو التكرم بالكشف على المنشأة، وأخذ عينات من الدقيق والخبز وتحليلها، واتخاذ ما يلزم وفق القانون.");
+    L.push("");
+    L.push("مقدّم الشكوى: " + val("c_name"));
+    if (val("c_phone")) L.push("رقم الهاتف: " + val("c_phone"));
+    return L.join("\n");
+  }
+
+  $("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var msg = $("formMsg");
+    var missing = [];
+    if (!val("c_name")) missing.push("اسم الشاكي");
+    if (!val("d_name")) missing.push("اسم المخبز أو الجهة المشكو منها");
+    if (!val("a_name")) missing.push("اسم جهة الاختصاص");
+    if (missing.length) {
+      msg.textContent = "أكمل الحقول المطلوبة: " + missing.join("، ") + ".";
+      msg.hidden = false;
+      $("letterCard").hidden = true;
+      return;
+    }
+    msg.hidden = true;
+    var text = buildLetter();
+    $("letter").textContent = text;
+    $("wa").href = "https://wa.me/?text=" + encodeURIComponent(text);
+    $("copyMsg").textContent = "";
+    $("letterCard").hidden = false;
+    $("letterCard").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  $("mkClear").addEventListener("click", function () {
+    FIELDS.forEach(function (id) { $(id).value = ""; });
+    $("formMsg").hidden = true;
+    $("letterCard").hidden = true;
+  });
+
+  $("copy").addEventListener("click", function () {
+    var text = $("letter").textContent;
+    var fallback = function () {
+      var r = document.createRange();
+      r.selectNodeContents($("letter"));
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      $("copyMsg").textContent = "تم تحديد النص. انسخه بالضغط المطوّل ثم «نسخ».";
+    };
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        $("copyMsg").textContent = "تم نسخ النص.";
+      }, fallback);
+    } catch (e) { fallback(); }
+  });
+
+  /* ---------- الباركود ---------- */
+  var stream = null, scanTimer = null;
+  var PREFIX = [[0,19,"الولايات المتحدة أو كندا"],[30,39,"الولايات المتحدة"],[60,139,"الولايات المتحدة أو كندا"],[300,379,"فرنسا"],[400,440,"ألمانيا"],[450,459,"اليابان"],[490,499,"اليابان"],[500,509,"المملكة المتحدة"],[611,611,"المغرب"],[613,613,"الجزائر"],[619,619,"تونس"],[622,622,"مصر"],[624,624,"ليبيا"],[625,625,"الأردن"],[626,626,"إيران"],[628,628,"السعودية"],[629,629,"الإمارات"],[690,699,"الصين"],[760,769,"سويسرا"],[800,839,"إيطاليا"],[840,849,"إسبانيا"],[869,869,"تركيا"],[870,879,"هولندا"],[880,880,"كوريا الجنوبية"],[890,890,"الهند"]];
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+  }
+  function prefixCountry(code) {
+    if (code.length !== 12 && code.length !== 13) return "";
+    var n = parseInt(("0" + code).slice(-13).slice(0, 3), 10);
+    for (var i = 0; i < PREFIX.length; i++) { if (n >= PREFIX[i][0] && n <= PREFIX[i][1]) return PREFIX[i][2]; }
+    return "";
+  }
+  function showB(h) { $("bout").innerHTML = h; }
+  function notice(level, pill, text) {
+    showB('<div class="result ' + level + '"><span class="pill">' + pill + "</span><p>" + text + "</p></div>");
+  }
+
+  function stopScan() {
+    if (scanTimer) { clearInterval(scanTimer); scanTimer = null; }
+    if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
+    $("cam").hidden = true;
+    $("scan").textContent = "مسح بالكاميرا";
+  }
+
+  async function startScan() {
+    if (!("BarcodeDetector" in window)) {
+      notice("warn", "غير مدعوم", "متصفحك لا يدعم المسح بالكاميرا. اكتب رقم الباركود يدوياً، أو افتح التطبيق في Chrome على أندرويد.");
+      return;
+    }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+    } catch (e) {
+      stream = null;
+      notice("warn", "الكاميرا غير متاحة", "لم يُسمح بفتح الكاميرا. اسمح بالوصول إليها من إعدادات المتصفح، أو اكتب رقم الباركود يدوياً.");
+      return;
+    }
+    var v = $("cam");
+    v.srcObject = stream;
+    v.hidden = false;
+    try { await v.play(); } catch (e) {}
+    $("scan").textContent = "إيقاف الكاميرا";
+    var det = new BarcodeDetector({ formats: ["ean_13", "ean_8", "upc_a", "upc_e"] });
+    scanTimer = setInterval(async function () {
+      try {
+        var r = await det.detect(v);
+        if (r.length) { var c = r[0].rawValue; stopScan(); $("code").value = c; lookup(); }
+      } catch (e) {}
+    }, 400);
+  }
+
+  async function lookup() {
+    var code = normalize($("code").value).replace(/\D/g, "");
+    if ([8, 12, 13, 14].indexOf(code.length) < 0) {
+      notice("warn", "رقم غير صحيح", "الباركود يتكون عادة من 8 أو 12 أو 13 رقماً. أعد كتابته.");
+      return;
+    }
+    showB('<div class="card"><p>جارٍ البحث في قاعدة بيانات المنتجات...</p></div>');
+    var ctl = new AbortController();
+    var to = setTimeout(function () { ctl.abort(); }, 9000);
+    var data;
+    try {
+      var url = "https://world.openfoodfacts.org/api/v2/product/" + code + ".json?fields=product_name,product_name_ar,brands,ingredients_text,ingredients_text_ar,additives_tags";
+      var resp = await fetch(url, { signal: ctl.signal });
+      data = await resp.json();
+    } catch (e) {
+      clearTimeout(to);
+      notice("warn", "تعذّر الاتصال", "لم نتمكن من الوصول إلى قاعدة بيانات المنتجات. تأكد من الإنترنت وأعد المحاولة، أو الصق المكونات يدوياً في تبويب الفحص.");
+      return;
+    }
+    clearTimeout(to);
+    if (!data || data.status !== 1 || !data.product) {
+      notice("warn", "المنتج غير مسجّل", "هذا الباركود غير موجود في قاعدة البيانات. انسخ المكونات المكتوبة على العبوة والصقها في خانة الفحص أعلاه.");
+      return;
+    }
+    var p = data.product;
+    var ing = (p.ingredients_text_ar || p.ingredients_text || "").trim();
+    var adds = (p.additives_tags || []).join(" ");
+    var has = !!(ing || adds);
+    var res = detect(ing + " " + adds);
+    var status = has ? res.status : "warn";
+    var name = p.product_name_ar || p.product_name || "منتج بلا اسم مسجّل";
+    var country = prefixCountry(code);
+
+    var h = '<div class="result ' + status + '">';
+    h += '<span class="pill">' + (has ? (status === "ok" ? "لم يُرصد في بيانات المنتج" : TITLES[status]) : "بيانات ناقصة") + "</span>";
+    h += '<p class="prod-name">' + esc(name) + "</p>";
+    if (p.brands) h += '<p class="small" style="margin:0">' + esc(p.brands) + "</p>";
+    if (country) h += '<p class="small" style="margin:0">بلد تسجيل الباركود: ' + esc(country) + " (لا يعني بالضرورة بلد الصنع)</p>";
+    if (!has) {
+      h += "<p>المنتج مسجّل لكن بلا قائمة مكونات. انسخها من العبوة وافحصها من خانة الفحص.</p>";
+    } else if (status === "danger") {
+      h += "<p><b>بيانات المنتج تذكر برومات البوتاسيوم أو الرمز E924.</b> يُفضّل عدم شرائه.</p>";
+    } else if (status === "warn") {
+      h += "<p>ورد في بيانات المنتج ما يحتاج انتباهاً (انظر الوسوم أدناه).</p>";
+    } else {
+      h += "<p>لم نجد برومات البوتاسيوم في بيانات المنتج المسجّلة. هذا لا يضمن خلوه منها، فالبيانات يضيفها متطوعون وقد تكون ناقصة أو قديمة.</p>";
+    }
+    if (res.found.length) h += '<ul class="found">' + res.found.map(function (f) { return "<li>" + f.label + "</li>"; }).join("") + "</ul>";
+    if (ing) h += '<p class="ing-text">' + esc(ing) + "</p>";
+    h += '<p class="small" style="margin:6px 0 0">المصدر: Open Food Facts، قاعدة بيانات مفتوحة.</p></div>';
+    showB(h);
+
+    var list = load();
+    list.unshift({ t: Date.now(), s: status, x: "باركود " + code + "، " + name });
+    save(list);
+    drawHist();
+  }
+
+  $("look").addEventListener("click", lookup);
+  $("code").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); lookup(); } });
+  $("scan").addEventListener("click", function () { if (stream) stopScan(); else startScan(); });
+
+  /* ---------- سجل الدقيق والمخابز ---------- */
+  var REG = null;
+  var ST = {
+    free: { label: "لم يُرصد برومات في العينة المحلَّلة", cls: "ok" },
+    found: { label: "رُصد برومات في العينة المحلَّلة", cls: "danger" },
+    untested: { label: "لم يُفحص بعد", cls: "warn" }
+  };
+  async function loadReg() {
+    if (REG) return REG;
+    try {
+      var r = await fetch("data.json?v=" + Date.now());
+      REG = await r.json();
+      if (!REG || !Array.isArray(REG.entries)) REG = { entries: [] };
+    } catch (e) { return null; }
+    return REG;
+  }
+  async function searchReg() {
+    var q = normalize($("rq").value).trim();
+    var out = $("rout");
+    var reg = await loadReg();
+    if (!reg) { out.innerHTML = '<div class="result warn"><span class="pill">تعذّر التحميل</span><p>لم نتمكن من تحميل السجل. تأكد من الإنترنت وأعد المحاولة.</p></div>'; return; }
+    if (!reg.entries.length) {
+      out.innerHTML = '<div class="card"><p>السجل فارغ حالياً. تُضاف النتائج فور وصول تقارير مخبرية موثّقة.</p><p class="small">غياب الاسم من السجل لا يعني أنه سليم، بل أنه غير مفحوص بعد.</p></div>';
+      return;
+    }
+    var hits = reg.entries.filter(function (e) {
+      return !q || normalize([e.name, e.city, e.kind].join(" ")).indexOf(q) > -1;
+    }).slice(0, 30);
+    if (!hits.length) {
+      out.innerHTML = '<div class="card"><p>لا توجد نتيجة مسجّلة بهذا الاسم.</p><p class="small">هذا لا يعني أنه سليم، بل أنه غير مفحوص بعد. يمكنك طلب تحليل عينة وتقديم شكوى من تبويب «شكوى».</p></div>';
+      return;
+    }
+    var h = '<div class="card">';
+    hits.forEach(function (e) {
+      var s = ST[e.status] || ST.untested;
+      h += '<div class="hist-item"><span class="dot ' + s.cls + '"></span><div class="hist-text"><b>' + esc(e.name) + '</b> <span class="small">' + esc([e.kind, e.city].filter(Boolean).join("، ")) + "</span><br>" + s.label;
+      var meta = [];
+      if (e.lab) meta.push("المختبر: " + esc(e.lab));
+      if (e.date) meta.push("التاريخ: " + esc(e.date));
+      if (meta.length) h += '<br><span class="small">' + meta.join("، ") + "</span>";
+      if (e.note) h += '<br><span class="small">' + esc(e.note) + "</span>";
+      h += "</div></div>";
+    });
+    h += '<p class="small" style="margin-top:8px">النتيجة تخص العينة والتاريخ المذكورين فقط، ولا تُعمَّم على كل إنتاج.</p></div>';
+    out.innerHTML = h;
+  }
+  $("rgo").addEventListener("click", searchReg);
+  $("rq").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); searchReg(); } });
+
+  drawHist();
+  $("d_date").max = new Date().toISOString().slice(0, 10);
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}</script>
+</body>
+</html>
