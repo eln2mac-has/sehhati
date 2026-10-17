@@ -50,7 +50,7 @@ Registered work, certificate no. 20562/أ/2021م 21 ت, issued 15 September 2021
 
 © 2021–2026 Elnazeer Dawod Suliman. **All rights reserved.** No permission is granted to copy, modify or redistribute this code without written consent.
 
-Patents and other work: https://www.linkedin.com/in/elnazeer-suliman-405b53323/
+Patents and other work: https://www.linkedin.com/in/elnazeer-suliman-4b0201358/
 
 ---
 
@@ -100,6 +100,6 @@ HTML وCSS وJavaScript خام، بلا إطار عمل ولا خادم ولا �
 
 © 2021–2026 النذير داود سليمان. **جميع الحقوق محفوظة.** لا يجوز نسخ الكود أو تعديله أو إعادة توزيعه دون إذن كتابي.
 
-البراءات والأعمال الأخرى: https://www.linkedin.com/in/elnazeer-suliman-405b53323/
+البراءات والأعمال الأخرى: https://www.linkedin.com/in/elnazeer-suliman-4b0201358/
 
 </div>
