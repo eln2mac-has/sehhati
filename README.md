@@ -40,6 +40,8 @@ All checks run in the browser. The only external request is the optional barcode
 
 The app reads only the text the user enters. Confirming the presence of potassium bromate requires **laboratory analysis**. Results are informational and not legal or medical advice.
 
+Registry data is compiled from published laboratory reports and reflects only the samples analyzed in those reports; it does not describe any product or bakery as a whole, and it may not reflect current production.
+
 ## Author and rights
 
 **Elnazeer Dawod Suliman Abdalla** — MACKENZIE Center for Computing, Training & Consulting, Republic of the Sudan.
@@ -87,6 +89,8 @@ HTML وCSS وJavaScript خام، بلا إطار عمل ولا خادم ولا �
 ## تنبيه
 
 يقرأ التطبيق النص الذي يدخله المستخدم فقط. والتأكد من وجود برومات البوتاسيوم يتطلب **تحليلاً مخبرياً**. النتائج إرشادية وليست مشورة قانونية أو طبية.
+
+بيانات السجل مجمّعة من تقارير مخبرية منشورة، وتخص العينات المحلَّلة في تلك التقارير فقط، ولا تصف المنتج أو المخبز ككل، وقد لا تعكس الإنتاج الحالي.
 
 ## المؤلف والحقوق
 
