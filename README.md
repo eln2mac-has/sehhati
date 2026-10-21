@@ -1,5 +1,7 @@
 # Sehhati (صحتي) — Potassium Bromate Checker
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23532157.svg)](https://doi.org/10.5281/zenodo.23532157)
+
 **Live app:** https://sehhati-sd.netlify.app
 
 A free, mobile-first web app that helps consumers check bread and flour ingredient lists for **potassium bromate (E924)** and other flagged dough improvers, and guides them through lab testing and filing a complaint with the competent authority.
@@ -41,6 +43,10 @@ All checks run in the browser. The only external request is the optional barcode
 The app reads only the text the user enters. Confirming the presence of potassium bromate requires **laboratory analysis**. Results are informational and not legal or medical advice.
 
 Registry data is compiled from published laboratory reports and reflects only the samples analyzed in those reports; it does not describe any product or bakery as a whole, and it may not reflect current production.
+
+## Citation
+
+Suliman, E. D. (2026). *Sehhati (صحتي): A Web App for Detecting Potassium Bromate (E924) in Bread and Flour Ingredient Lists* (Version v1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23532157
 
 ## Author and rights
 
@@ -91,6 +97,10 @@ HTML وCSS وJavaScript خام، بلا إطار عمل ولا خادم ولا �
 يقرأ التطبيق النص الذي يدخله المستخدم فقط. والتأكد من وجود برومات البوتاسيوم يتطلب **تحليلاً مخبرياً**. النتائج إرشادية وليست مشورة قانونية أو طبية.
 
 بيانات السجل مجمّعة من تقارير مخبرية منشورة، وتخص العينات المحلَّلة في تلك التقارير فقط، ولا تصف المنتج أو المخبز ككل، وقد لا تعكس الإنتاج الحالي.
+
+## الاستشهاد
+
+Suliman, E. D. (2026). Sehhati (صحتي): A Web App for Detecting Potassium Bromate (E924) in Bread and Flour Ingredient Lists (Version v1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23532157
 
 ## المؤلف والحقوق
 
